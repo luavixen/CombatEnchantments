@@ -1,10 +1,7 @@
 package dev.foxgirl.cenchants.enchantments;
 
 import dev.foxgirl.cenchants.CombatEnchants;
-import dev.foxgirl.cenchants.config.ModConfigs;
-import net.minecraft.enchantment.Enchantment;
 import net.minecraft.enchantment.EnchantmentTarget;
-import net.minecraft.enchantment.Enchantments;
 import net.minecraft.entity.Entity;
 import net.minecraft.entity.EquipmentSlot;
 import net.minecraft.entity.LivingEntity;
@@ -12,16 +9,18 @@ import net.minecraft.entity.damage.DamageSource;
 import net.minecraft.entity.effect.StatusEffectInstance;
 import net.minecraft.entity.effect.StatusEffects;
 import net.minecraft.item.CrossbowItem;
-import net.minecraft.util.Identifier;
-import net.minecraftforge.registries.ForgeRegistries;
 
 import java.util.List;
+import java.util.Set;
 
-public class GrabEnchantment extends Enchantment {
+public class GrabEnchantment extends BaseEnchantment {
     public GrabEnchantment() {
-        super(Rarity.RARE, EnchantmentTarget.BOW, new EquipmentSlot[] {EquipmentSlot.MAINHAND});
-        if(ModConfigs.GRAB)
-            CombatEnchants.register(ForgeRegistries.Keys.ENCHANTMENTS, new Identifier("cenchants", "grab"), this);
+        super(Rarity.RARE, EnchantmentTarget.BOW, EquipmentSlot.MAINHAND);
+    }
+
+    @Override
+    public String getName() {
+        return "grab";
     }
 
     @Override
@@ -80,14 +79,12 @@ public class GrabEnchantment extends Enchantment {
     }
 
     @Override
-    public int getMaxLevel() {
+    public int getDefaultMaxLevel() {
         return 2;
     }
 
     @Override
-    protected boolean canAccept(Enchantment other) {
-        if(other.equals(Enchantments.PUNCH) || other.equals(CombatEnchants.KNOCKUP))
-            return false;
-        return super.canAccept(other);
+    public Set<String> getDefaultExcludes() {
+        return Set.of("punch", "knockup");
     }
 }

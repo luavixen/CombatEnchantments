@@ -1,8 +1,6 @@
 package dev.foxgirl.cenchants.enchantments;
 
 import dev.foxgirl.cenchants.CombatEnchants;
-import dev.foxgirl.cenchants.config.ModConfigs;
-import net.minecraft.enchantment.Enchantment;
 import net.minecraft.enchantment.EnchantmentTarget;
 import net.minecraft.entity.Entity;
 import net.minecraft.entity.EquipmentSlot;
@@ -10,14 +8,15 @@ import net.minecraft.entity.LivingEntity;
 import net.minecraft.entity.damage.DamageSource;
 import net.minecraft.entity.effect.StatusEffectInstance;
 import net.minecraft.item.CrossbowItem;
-import net.minecraft.util.Identifier;
-import net.minecraftforge.registries.ForgeRegistries;
 
-public class BarrageEnchantment extends Enchantment {
+public class BarrageEnchantment extends BaseEnchantment {
     public BarrageEnchantment() {
-        super(Rarity.VERY_RARE, EnchantmentTarget.BOW, new EquipmentSlot[]{EquipmentSlot.MAINHAND});
-        if(ModConfigs.BARRAGE)
-            CombatEnchants.register(ForgeRegistries.Keys.ENCHANTMENTS, new Identifier("cenchants", "barrage"), this);
+        super(Rarity.VERY_RARE, EnchantmentTarget.BOW, EquipmentSlot.MAINHAND);
+    }
+
+    @Override
+    public String getName() {
+        return "barrage";
     }
 
     @Override
@@ -56,12 +55,7 @@ public class BarrageEnchantment extends Enchantment {
     }
 
     @Override
-    public int getMaxLevel() {
+    public int getDefaultMaxLevel() {
         return 1;
-    }
-
-    @Override
-    protected boolean canAccept(Enchantment other) {
-        return super.canAccept(other);
     }
 }

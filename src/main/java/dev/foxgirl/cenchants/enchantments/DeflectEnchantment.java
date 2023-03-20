@@ -1,20 +1,19 @@
 package dev.foxgirl.cenchants.enchantments;
 
-import dev.foxgirl.cenchants.CombatEnchants;
-import dev.foxgirl.cenchants.config.ModConfigs;
 import net.minecraft.enchantment.Enchantment;
 import net.minecraft.enchantment.EnchantmentTarget;
 import net.minecraft.entity.Entity;
 import net.minecraft.entity.EquipmentSlot;
 import net.minecraft.entity.LivingEntity;
-import net.minecraft.util.Identifier;
-import net.minecraftforge.registries.ForgeRegistries;
 
-public class DeflectEnchantment extends Enchantment {
+public class DeflectEnchantment extends BaseEnchantment {
     public DeflectEnchantment() {
-        super(Enchantment.Rarity.VERY_RARE, EnchantmentTarget.ARMOR_CHEST, new EquipmentSlot[] {EquipmentSlot.CHEST});
-        if(ModConfigs.DEFLECT)
-            CombatEnchants.register(ForgeRegistries.Keys.ENCHANTMENTS, new Identifier("cenchants", "deflect"), this);
+        super(Enchantment.Rarity.VERY_RARE, EnchantmentTarget.ARMOR_CHEST, EquipmentSlot.CHEST);
+    }
+
+    @Override
+    public String getName() {
+        return "deflect";
     }
 
     @Override
@@ -33,12 +32,7 @@ public class DeflectEnchantment extends Enchantment {
     }
 
     @Override
-    public int getMaxLevel() {
+    public int getDefaultMaxLevel() {
         return 2;
-    }
-
-    @Override
-    protected boolean canAccept(Enchantment other) {
-        return super.canAccept(other);
     }
 }

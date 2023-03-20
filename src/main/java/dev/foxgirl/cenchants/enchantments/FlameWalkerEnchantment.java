@@ -1,22 +1,21 @@
 package dev.foxgirl.cenchants.enchantments;
 
 import dev.foxgirl.cenchants.CombatEnchants;
-import dev.foxgirl.cenchants.config.ModConfigs;
-import net.minecraft.enchantment.Enchantment;
 import net.minecraft.enchantment.EnchantmentTarget;
 import net.minecraft.entity.Entity;
 import net.minecraft.entity.EquipmentSlot;
 import net.minecraft.entity.LivingEntity;
 import net.minecraft.entity.effect.StatusEffectInstance;
 import net.minecraft.entity.effect.StatusEffects;
-import net.minecraft.util.Identifier;
-import net.minecraftforge.registries.ForgeRegistries;
 
-public class FlameWalkerEnchantment extends Enchantment {
+public class FlameWalkerEnchantment extends BaseEnchantment {
     public FlameWalkerEnchantment() {
-        super(Rarity.VERY_RARE, EnchantmentTarget.ARMOR_FEET, new EquipmentSlot[] {EquipmentSlot.FEET});
-        if(ModConfigs.FLAMEWALKER)
-            CombatEnchants.register(ForgeRegistries.Keys.ENCHANTMENTS, new Identifier("cenchants", "flame_walker"), this);
+        super(Rarity.VERY_RARE, EnchantmentTarget.ARMOR_FEET, EquipmentSlot.FEET);
+    }
+
+    @Override
+    public String getName() {
+        return "flame_walker";
     }
 
     @Override
@@ -36,12 +35,7 @@ public class FlameWalkerEnchantment extends Enchantment {
     }
 
     @Override
-    public int getMaxLevel() {
+    public int getDefaultMaxLevel() {
         return 2;
-    }
-
-    @Override
-    protected boolean canAccept(Enchantment other) {
-        return super.canAccept(other);
     }
 }

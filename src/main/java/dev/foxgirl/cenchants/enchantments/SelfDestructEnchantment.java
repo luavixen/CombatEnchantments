@@ -1,8 +1,6 @@
 package dev.foxgirl.cenchants.enchantments;
 
 import dev.foxgirl.cenchants.CombatEnchants;
-import dev.foxgirl.cenchants.config.ModConfigs;
-import net.minecraft.enchantment.Enchantment;
 import net.minecraft.enchantment.EnchantmentHelper;
 import net.minecraft.enchantment.EnchantmentTarget;
 import net.minecraft.entity.Entity;
@@ -10,17 +8,18 @@ import net.minecraft.entity.EquipmentSlot;
 import net.minecraft.entity.LivingEntity;
 import net.minecraft.entity.damage.DamageSource;
 import net.minecraft.entity.player.PlayerEntity;
-import net.minecraft.util.Identifier;
 import net.minecraft.world.GameRules;
 import net.minecraft.world.World;
 import net.minecraft.world.explosion.Explosion;
-import net.minecraftforge.registries.ForgeRegistries;
 
-public class SelfDestructEnchantment extends Enchantment {
+public class SelfDestructEnchantment extends BaseEnchantment {
     public SelfDestructEnchantment() {
-        super(Rarity.UNCOMMON, EnchantmentTarget.WEAPON, new EquipmentSlot[]{EquipmentSlot.MAINHAND});
-        if(ModConfigs.SELFDESTRUCT)
-            CombatEnchants.register(ForgeRegistries.Keys.ENCHANTMENTS, new Identifier("cenchants", "self_destruct"), this);
+        super(Rarity.UNCOMMON, EnchantmentTarget.WEAPON, EquipmentSlot.MAINHAND);
+    }
+
+    @Override
+    public String getName() {
+        return "self_destruct";
     }
 
     @Override
@@ -49,7 +48,7 @@ public class SelfDestructEnchantment extends Enchantment {
     }
 
     @Override
-    public int getMaxLevel() {
+    public int getDefaultMaxLevel() {
         return 1;
     }
 }

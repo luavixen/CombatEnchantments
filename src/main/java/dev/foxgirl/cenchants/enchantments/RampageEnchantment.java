@@ -1,8 +1,6 @@
 package dev.foxgirl.cenchants.enchantments;
 
 import dev.foxgirl.cenchants.CombatEnchants;
-import dev.foxgirl.cenchants.config.ModConfigs;
-import net.minecraft.enchantment.Enchantment;
 import net.minecraft.enchantment.EnchantmentHelper;
 import net.minecraft.enchantment.EnchantmentTarget;
 import net.minecraft.entity.Entity;
@@ -13,15 +11,18 @@ import net.minecraft.entity.effect.StatusEffects;
 import net.minecraft.entity.player.PlayerEntity;
 import net.minecraft.particle.ParticleTypes;
 import net.minecraft.server.world.ServerWorld;
-import net.minecraft.util.Identifier;
-import net.minecraftforge.registries.ForgeRegistries;
 
-public class RampageEnchantment extends Enchantment {
+import java.util.Set;
+
+public class RampageEnchantment extends BaseEnchantment {
 
     public RampageEnchantment() {
-        super(Rarity.RARE, EnchantmentTarget.WEAPON, new EquipmentSlot[]{EquipmentSlot.MAINHAND});
-        if(ModConfigs.RAMPAGE)
-            CombatEnchants.register(ForgeRegistries.Keys.ENCHANTMENTS, new Identifier("cenchants", "rampage"), this);
+        super(Rarity.RARE, EnchantmentTarget.WEAPON, EquipmentSlot.MAINHAND);
+    }
+
+    @Override
+    public String getName() {
+        return "rampage";
     }
 
     @Override
@@ -78,14 +79,12 @@ public class RampageEnchantment extends Enchantment {
     }
 
     @Override
-    protected boolean canAccept(Enchantment other) {
-        if(other.equals(CombatEnchants.TRIUMPH))
-            return false;
-        return super.canAccept(other);
+    public int getDefaultMaxLevel() {
+        return 3;
     }
 
     @Override
-    public int getMaxLevel() {
-        return 3;
+    public Set<String> getDefaultExcludes() {
+        return Set.of("triumph");
     }
 }

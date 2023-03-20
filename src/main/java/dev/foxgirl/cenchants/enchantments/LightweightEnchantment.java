@@ -1,21 +1,18 @@
 package dev.foxgirl.cenchants.enchantments;
 
-import dev.foxgirl.cenchants.CombatEnchants;
-import dev.foxgirl.cenchants.config.ModConfigs;
-import net.minecraft.enchantment.Enchantment;
 import net.minecraft.enchantment.EnchantmentTarget;
 import net.minecraft.entity.EquipmentSlot;
 import net.minecraft.item.ItemStack;
 import net.minecraft.item.ShieldItem;
-import net.minecraft.util.Identifier;
-import net.minecraftforge.registries.ForgeRegistries;
 
-public class LightweightEnchantment extends Enchantment {
+public class LightweightEnchantment extends BaseEnchantment {
     public LightweightEnchantment() {
-        super(Rarity.UNCOMMON, EnchantmentTarget.BREAKABLE, new EquipmentSlot[] {EquipmentSlot.MAINHAND, EquipmentSlot.OFFHAND});
-        if(ModConfigs.LIGHTWEIGHT)
-            CombatEnchants.register(ForgeRegistries.Keys.ENCHANTMENTS, new Identifier("cenchants", "lightweight"), this);
+        super(Rarity.UNCOMMON, EnchantmentTarget.BREAKABLE, EquipmentSlot.MAINHAND, EquipmentSlot.OFFHAND);
+    }
 
+    @Override
+    public String getName() {
+        return "lightweight";
     }
 
     @Override
@@ -34,17 +31,12 @@ public class LightweightEnchantment extends Enchantment {
     }
 
     @Override
-    public int getMaxLevel() {
+    public int getDefaultMaxLevel() {
         return 5;
     }
 
     @Override
     public boolean isTreasure() {
         return true;
-    }
-
-    @Override
-    protected boolean canAccept(Enchantment other) {
-        return super.canAccept(other);
     }
 }

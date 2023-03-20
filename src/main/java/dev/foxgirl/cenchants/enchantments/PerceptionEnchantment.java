@@ -1,8 +1,6 @@
 package dev.foxgirl.cenchants.enchantments;
 
 import dev.foxgirl.cenchants.CombatEnchants;
-import dev.foxgirl.cenchants.config.ModConfigs;
-import net.minecraft.enchantment.Enchantment;
 import net.minecraft.enchantment.EnchantmentHelper;
 import net.minecraft.enchantment.EnchantmentTarget;
 import net.minecraft.entity.Entity;
@@ -11,15 +9,18 @@ import net.minecraft.entity.LivingEntity;
 import net.minecraft.entity.attribute.EntityAttributes;
 import net.minecraft.entity.damage.DamageSource;
 import net.minecraft.entity.player.PlayerEntity;
-import net.minecraft.util.Identifier;
-import net.minecraftforge.registries.ForgeRegistries;
+
+import java.util.Set;
 
 
-public class PerceptionEnchantment extends Enchantment {
+public class PerceptionEnchantment extends BaseEnchantment {
     public PerceptionEnchantment() {
-        super(Rarity.VERY_RARE, EnchantmentTarget.WEAPON, new EquipmentSlot[]{EquipmentSlot.MAINHAND});
-        if(ModConfigs.PERCEPTION)
-            CombatEnchants.register(ForgeRegistries.Keys.ENCHANTMENTS, new Identifier("cenchants", "perception"), this);
+        super(Rarity.VERY_RARE, EnchantmentTarget.WEAPON, EquipmentSlot.MAINHAND);
+    }
+
+    @Override
+    public String getName() {
+        return "perception";
     }
 
     @Override
@@ -53,14 +54,12 @@ public class PerceptionEnchantment extends Enchantment {
     }
 
     @Override
-    public int getMaxLevel() {
+    public int getDefaultMaxLevel() {
         return 1;
     }
 
     @Override
-    protected boolean canAccept(Enchantment other) {
-        if(other.equals(CombatEnchants.LETHALITY))
-            return false;
-        return super.canAccept(other);
+    public Set<String> getDefaultExcludes() {
+        return Set.of("lethality");
     }
 }

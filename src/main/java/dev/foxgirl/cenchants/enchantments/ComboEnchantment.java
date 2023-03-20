@@ -1,24 +1,23 @@
 package dev.foxgirl.cenchants.enchantments;
 
 import dev.foxgirl.cenchants.CombatEnchants;
-import dev.foxgirl.cenchants.config.ModConfigs;
-import net.minecraft.enchantment.Enchantment;
 import net.minecraft.enchantment.EnchantmentHelper;
 import net.minecraft.enchantment.EnchantmentTarget;
 import net.minecraft.entity.*;
 import net.minecraft.entity.effect.StatusEffectInstance;
 import net.minecraft.particle.ParticleTypes;
 import net.minecraft.server.world.ServerWorld;
-import net.minecraft.util.Identifier;
 import net.minecraft.world.World;
-import net.minecraftforge.registries.ForgeRegistries;
 
 
-public class ComboEnchantment extends Enchantment {
+public class ComboEnchantment extends BaseEnchantment {
     public ComboEnchantment() {
-        super(Rarity.UNCOMMON, EnchantmentTarget.WEAPON, new EquipmentSlot[]{EquipmentSlot.MAINHAND});
-        if(ModConfigs.COMBO)
-            CombatEnchants.register(ForgeRegistries.Keys.ENCHANTMENTS, new Identifier("cenchants", "combo"), this);
+        super(Rarity.UNCOMMON, EnchantmentTarget.WEAPON, EquipmentSlot.MAINHAND);
+    }
+
+    @Override
+    public String getName() {
+        return "combo";
     }
 
     @Override
@@ -56,13 +55,7 @@ public class ComboEnchantment extends Enchantment {
     }
 
     @Override
-    public int getMaxLevel() {
+    public int getDefaultMaxLevel() {
         return 5;
     }
-
-    @Override
-    protected boolean canAccept(Enchantment other) {
-        return super.canAccept(other);
-    }
 }
-

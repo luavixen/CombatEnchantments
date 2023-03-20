@@ -1,8 +1,6 @@
 package dev.foxgirl.cenchants.enchantments;
 
 import dev.foxgirl.cenchants.CombatEnchants;
-import dev.foxgirl.cenchants.config.ModConfigs;
-import net.minecraft.enchantment.Enchantment;
 import net.minecraft.enchantment.EnchantmentTarget;
 import net.minecraft.entity.Entity;
 import net.minecraft.entity.EquipmentSlot;
@@ -11,17 +9,19 @@ import net.minecraft.entity.damage.DamageSource;
 import net.minecraft.item.CrossbowItem;
 import net.minecraft.particle.ParticleTypes;
 import net.minecraft.server.world.ServerWorld;
-import net.minecraft.util.Identifier;
-import net.minecraftforge.registries.ForgeRegistries;
 
 import java.util.ArrayList;
 import java.util.List;
+import java.util.Set;
 
-public class ZapEnchantment extends Enchantment {
+public class ZapEnchantment extends BaseEnchantment {
     public ZapEnchantment() {
-        super(Rarity.VERY_RARE, EnchantmentTarget.BOW, new EquipmentSlot[]{EquipmentSlot.MAINHAND});
-        if(ModConfigs.ZAP)
-            CombatEnchants.register(ForgeRegistries.Keys.ENCHANTMENTS, new Identifier("cenchants", "zap"), this);
+        super(Rarity.VERY_RARE, EnchantmentTarget.BOW, EquipmentSlot.MAINHAND);
+    }
+
+    @Override
+    public String getName() {
+        return "zap";
     }
 
     @Override
@@ -84,14 +84,12 @@ public class ZapEnchantment extends Enchantment {
     }
 
     @Override
-    public int getMaxLevel() {
+    public int getDefaultMaxLevel() {
         return 2;
     }
 
     @Override
-    protected boolean canAccept(Enchantment other) {
-        if(other.equals(CombatEnchants.VOLLEY))
-            return false;
-        return super.canAccept(other);
+    public Set<String> getDefaultExcludes() {
+        return Set.of("volley");
     }
 }

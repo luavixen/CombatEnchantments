@@ -1,20 +1,18 @@
 package dev.foxgirl.cenchants.enchantments;
 
-import dev.foxgirl.cenchants.CombatEnchants;
-import dev.foxgirl.cenchants.config.ModConfigs;
-import net.minecraft.enchantment.Enchantment;
 import net.minecraft.enchantment.EnchantmentTarget;
 import net.minecraft.entity.Entity;
 import net.minecraft.entity.EquipmentSlot;
 import net.minecraft.entity.LivingEntity;
-import net.minecraft.util.Identifier;
-import net.minecraftforge.registries.ForgeRegistries;
 
-public class InkingEnchantment extends Enchantment {
+public class InkingEnchantment extends BaseEnchantment {
     public InkingEnchantment() {
-        super(Rarity.RARE, EnchantmentTarget.TRIDENT, new EquipmentSlot[]{EquipmentSlot.MAINHAND});
-        if(ModConfigs.INKING)
-            CombatEnchants.register(ForgeRegistries.Keys.ENCHANTMENTS, new Identifier("cenchants", "inking"), this);
+        super(Rarity.RARE, EnchantmentTarget.TRIDENT, EquipmentSlot.MAINHAND);
+    }
+
+    @Override
+    public String getName() {
+        return "inking";
     }
 
     @Override
@@ -22,13 +20,7 @@ public class InkingEnchantment extends Enchantment {
     }
 
     @Override
-    public int getMaxLevel() {
+    public int getDefaultMaxLevel() {
         return 2;
     }
-
-    @Override
-    protected boolean canAccept(Enchantment other) {
-        return super.canAccept(other);
-    }
 }
-

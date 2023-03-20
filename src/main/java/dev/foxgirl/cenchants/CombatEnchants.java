@@ -1,10 +1,8 @@
 package dev.foxgirl.cenchants;
 
-import dev.foxgirl.cenchants.config.ModConfigs;
+import dev.foxgirl.cenchants.config.Configs;
 import dev.foxgirl.cenchants.effects.*;
 import dev.foxgirl.cenchants.enchantments.*;
-import net.minecraft.enchantment.Enchantment;
-import net.minecraft.entity.EquipmentSlot;
 import net.minecraft.entity.effect.StatusEffect;
 import net.minecraft.registry.Registry;
 import net.minecraft.registry.RegistryKey;
@@ -19,46 +17,42 @@ import java.util.List;
 
 @Mod("cenchants")
 public final class CombatEnchants {
-    public static final EquipmentSlot[] ALL_ARMOR = new EquipmentSlot[] {EquipmentSlot.HEAD, EquipmentSlot.CHEST, EquipmentSlot.LEGS, EquipmentSlot.FEET};
-    public static final String MOD_ID = "cenchants";
-
-    public static Enchantment DUELING;
-    public static Enchantment LETHALITY;
-    public static Enchantment TRIUMPH;
-    public static Enchantment RAMPAGE;
-    public static Enchantment INFERNO;
-    public static Enchantment SORCERY;
-    public static Enchantment LIFESTEAL;
-    public static Enchantment ZAP;
-    public static Enchantment VOLLEY;
-    public static Enchantment HUNTER;
-    public static Enchantment TRANQUILIZE;
-    public static Enchantment FROST;
-    public static Enchantment SHIELDING;
-    public static Enchantment SELFDESTRUCT;
-    public static Enchantment FLAME_WALKER;
-    public static Enchantment VISION;
-    public static Enchantment DARKNESS;
-    public static Enchantment ANTIHEAL;
-    public static Enchantment INSPIRE;
-    public static Enchantment REJUVENATE;
-    public static Enchantment BITE;
-    public static Enchantment HOOK;
-    public static Enchantment PERCEPTION;
-    public static Enchantment COMBO;
-    public static Enchantment KNOCKUP;
-    public static Enchantment FERVOR;
-    public static Enchantment BARRAGE;
-    public static Enchantment DEFLECT;
-    public static Enchantment SNAP;
-    public static Enchantment STEADFAST;
-    public static Enchantment LIGHTWEIGHT;
-    public static Enchantment LIFELINE;
-    public static Enchantment INKING;
-    public static Enchantment GRAB;
-    public static Enchantment TREMOR;
-    public static Enchantment AFTERSHOCK;
-    public static Enchantment SHIELDBREAK;
+    public static BaseEnchantment DUELING;
+    public static BaseEnchantment LETHALITY;
+    public static BaseEnchantment TRIUMPH;
+    public static BaseEnchantment RAMPAGE;
+    public static BaseEnchantment INFERNO;
+    public static BaseEnchantment SORCERY;
+    public static BaseEnchantment LIFESTEAL;
+    public static BaseEnchantment ZAP;
+    public static BaseEnchantment VOLLEY;
+    public static BaseEnchantment HUNTER;
+    public static BaseEnchantment TRANQUILIZE;
+    public static BaseEnchantment FROST;
+    public static BaseEnchantment SHIELDING;
+    public static BaseEnchantment SELFDESTRUCT;
+    public static BaseEnchantment FLAME_WALKER;
+    public static BaseEnchantment VISION;
+    public static BaseEnchantment DARKNESS;
+    public static BaseEnchantment ANTIHEAL;
+    public static BaseEnchantment INSPIRE;
+    public static BaseEnchantment REJUVENATE;
+    public static BaseEnchantment BITE;
+    public static BaseEnchantment HOOK;
+    public static BaseEnchantment PERCEPTION;
+    public static BaseEnchantment COMBO;
+    public static BaseEnchantment KNOCKUP;
+    public static BaseEnchantment FERVOR;
+    public static BaseEnchantment BARRAGE;
+    public static BaseEnchantment DEFLECT;
+    public static BaseEnchantment SNAP;
+    public static BaseEnchantment STEADFAST;
+    public static BaseEnchantment LIGHTWEIGHT;
+    public static BaseEnchantment LIFELINE;
+    public static BaseEnchantment INKING;
+    public static BaseEnchantment GRAB;
+    public static BaseEnchantment TREMOR;
+    public static BaseEnchantment AFTERSHOCK;
 
     public static final StatusEffect RAMPAGE_EFFECT = new RampageEffect();
     public static final StatusEffect LIFESTEAL_COOLDOWN_EFFECT = new LifestealCooldownEffect();
@@ -82,7 +76,7 @@ public final class CombatEnchants {
     // public static final DefaultParticleType SLEEPY_PARTICLE = FabricParticleTypes.simple();
 
     public CombatEnchants() {
-        ModConfigs.registerConfigs();
+        var configState = Configs.register();
 
         ANTIHEAL = new AntihealEnchantment();
         BARRAGE = new BarrageEnchantment();
@@ -120,7 +114,8 @@ public final class CombatEnchants {
         VISION = new VisionEnchantment();
         VOLLEY = new VolleyEnchantment();
         ZAP = new ZapEnchantment();
-        SHIELDBREAK = new ShieldBreakEnchantment();
+
+        configState.commit();
 
         register(ForgeRegistries.Keys.MOB_EFFECTS, new Identifier("cenchants", "rampage"), RAMPAGE_EFFECT);
         register(ForgeRegistries.Keys.MOB_EFFECTS, new Identifier("cenchants", "lifesteal_cooldown"), LIFESTEAL_COOLDOWN_EFFECT);
@@ -145,17 +140,16 @@ public final class CombatEnchants {
         FMLJavaModLoadingContext.get().getModEventBus().addListener(this::onRegister);
     }
 
-    public static <T> void register(RegistryKey<? extends Registry<T>> key, Identifier id, T entry) {
-        registryEntries.add(new Object[] { key, id, entry });
-    }
-
-    private static final List<Object[]> registryEntries = new ArrayList<>(64);
+    private static final List<Object[]> REGISTRY_ENTRIES = new ArrayList<>(64);
 
     @SuppressWarnings({"rawtypes", "unchecked"})
     private void onRegister(RegisterEvent event) {
-        for (Object[] tuple : registryEntries) {
+        for (Object[] tuple : REGISTRY_ENTRIES) {
             event.register((RegistryKey) tuple[0], (Identifier) tuple[1], () -> tuple[2]);
         }
     }
 
+    public static <T> void register(RegistryKey<? extends Registry<T>> key, Identifier id, T entry) {
+        REGISTRY_ENTRIES.add(new Object[] { key, id, entry });
+    }
 }

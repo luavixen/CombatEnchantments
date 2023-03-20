@@ -1,19 +1,20 @@
 package dev.foxgirl.cenchants.enchantments;
 
-import dev.foxgirl.cenchants.CombatEnchants;
-import dev.foxgirl.cenchants.config.ModConfigs;
-import net.minecraft.enchantment.Enchantment;
 import net.minecraft.enchantment.EnchantmentTarget;
 import net.minecraft.entity.Entity;
+import net.minecraft.entity.EquipmentSlot;
 import net.minecraft.entity.LivingEntity;
-import net.minecraft.util.Identifier;
-import net.minecraftforge.registries.ForgeRegistries;
 
-public class SorceryEnchantment extends Enchantment {
+import java.util.Set;
+
+public class SorceryEnchantment extends BaseEnchantment {
     public SorceryEnchantment() {
-        super(Rarity.UNCOMMON, EnchantmentTarget.WEARABLE, CombatEnchants.ALL_ARMOR);
-        if(ModConfigs.SORCERY)
-            CombatEnchants.register(ForgeRegistries.Keys.ENCHANTMENTS, new Identifier("cenchants", "sorcery"), this);
+        super(Rarity.UNCOMMON, EnchantmentTarget.WEARABLE, EquipmentSlot.HEAD, EquipmentSlot.CHEST, EquipmentSlot.LEGS, EquipmentSlot.FEET);
+    }
+
+    @Override
+    public String getName() {
+        return "sorcery";
     }
 
     @Override
@@ -32,14 +33,12 @@ public class SorceryEnchantment extends Enchantment {
     }
 
     @Override
-    public int getMaxLevel() {
+    public int getDefaultMaxLevel() {
         return 4;
     }
 
     @Override
-    protected boolean canAccept(Enchantment other) {
-        if(other.equals(CombatEnchants.SHIELDING))
-            return false;
-        return super.canAccept(other);
+    public Set<String> getDefaultExcludes() {
+        return Set.of("shielding");
     }
 }

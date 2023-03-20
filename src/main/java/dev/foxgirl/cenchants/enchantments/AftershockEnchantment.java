@@ -1,20 +1,18 @@
 package dev.foxgirl.cenchants.enchantments;
 
-import dev.foxgirl.cenchants.CombatEnchants;
-import dev.foxgirl.cenchants.config.ModConfigs;
-import net.minecraft.enchantment.Enchantment;
 import net.minecraft.enchantment.EnchantmentTarget;
 import net.minecraft.entity.Entity;
 import net.minecraft.entity.EquipmentSlot;
 import net.minecraft.entity.LivingEntity;
-import net.minecraft.util.Identifier;
-import net.minecraftforge.registries.ForgeRegistries;
 
-public class AftershockEnchantment extends Enchantment {
+public class AftershockEnchantment extends BaseEnchantment {
     public AftershockEnchantment() {
-        super(Rarity.VERY_RARE, EnchantmentTarget.WEAPON, new EquipmentSlot[]{EquipmentSlot.MAINHAND});
-        if(ModConfigs.AFTERSHOCK)
-            CombatEnchants.register(ForgeRegistries.Keys.ENCHANTMENTS, new Identifier("cenchants", "aftershock"), this);
+        super(Rarity.VERY_RARE, EnchantmentTarget.WEAPON, EquipmentSlot.MAINHAND);
+    }
+
+    @Override
+    public int getDefaultMaxLevel() {
+        return 5;
     }
 
     @Override
@@ -32,12 +30,7 @@ public class AftershockEnchantment extends Enchantment {
     }
 
     @Override
-    public int getMaxLevel() {
-        return 5;
-    }
-
-    @Override
-    protected boolean canAccept(Enchantment other) {
-        return super.canAccept(other);
+    public String getName() {
+        return "aftershock";
     }
 }

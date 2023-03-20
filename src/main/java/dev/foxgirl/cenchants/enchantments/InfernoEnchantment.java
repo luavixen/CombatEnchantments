@@ -1,26 +1,25 @@
 package dev.foxgirl.cenchants.enchantments;
 
 import dev.foxgirl.cenchants.CombatEnchants;
-import dev.foxgirl.cenchants.config.ModConfigs;
-import net.minecraft.enchantment.Enchantment;
 import net.minecraft.enchantment.EnchantmentHelper;
 import net.minecraft.enchantment.EnchantmentTarget;
-import net.minecraft.enchantment.Enchantments;
 import net.minecraft.entity.Entity;
 import net.minecraft.entity.EquipmentSlot;
 import net.minecraft.entity.LivingEntity;
 import net.minecraft.particle.ParticleTypes;
 import net.minecraft.server.world.ServerWorld;
-import net.minecraft.util.Identifier;
-import net.minecraftforge.registries.ForgeRegistries;
 
 import java.util.List;
+import java.util.Set;
 
-public class InfernoEnchantment extends Enchantment {
+public class InfernoEnchantment extends BaseEnchantment {
     public InfernoEnchantment() {
-        super(Rarity.RARE, EnchantmentTarget.WEAPON, new EquipmentSlot[]{EquipmentSlot.MAINHAND});
-        if(ModConfigs.INFERNO)
-            CombatEnchants.register(ForgeRegistries.Keys.ENCHANTMENTS, new Identifier("cenchants", "inferno"), this);
+        super(Rarity.RARE, EnchantmentTarget.WEAPON, EquipmentSlot.MAINHAND);
+    }
+
+    @Override
+    public String getName() {
+        return "inferno";
     }
 
     @Override
@@ -53,14 +52,12 @@ public class InfernoEnchantment extends Enchantment {
     }
 
     @Override
-    protected boolean canAccept(Enchantment other) {
-        if(other.equals(Enchantments.FIRE_ASPECT))
-            return false;
-        return super.canAccept(other);
+    public int getDefaultMaxLevel() {
+        return 2;
     }
 
     @Override
-    public int getMaxLevel() {
-        return 2;
+    public Set<String> getDefaultExcludes() {
+        return Set.of("fire_aspect");
     }
 }

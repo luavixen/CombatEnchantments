@@ -1,21 +1,18 @@
 package dev.foxgirl.cenchants.enchantments;
 
-import dev.foxgirl.cenchants.CombatEnchants;
-import dev.foxgirl.cenchants.config.ModConfigs;
-import net.minecraft.enchantment.Enchantment;
 import net.minecraft.enchantment.EnchantmentTarget;
 import net.minecraft.entity.EquipmentSlot;
 import net.minecraft.item.ItemStack;
 import net.minecraft.item.ShieldItem;
-import net.minecraft.util.Identifier;
-import net.minecraftforge.registries.ForgeRegistries;
 
-public class SteadfastEnchantment extends Enchantment {
+public class SteadfastEnchantment extends BaseEnchantment {
     public SteadfastEnchantment() {
-        super(Rarity.RARE, EnchantmentTarget.BREAKABLE, new EquipmentSlot[] {EquipmentSlot.MAINHAND, EquipmentSlot.OFFHAND});
-        if(ModConfigs.STEADFAST)
-            CombatEnchants.register(ForgeRegistries.Keys.ENCHANTMENTS, new Identifier("cenchants", "steadfast"), this);
+        super(Rarity.RARE, EnchantmentTarget.BREAKABLE, EquipmentSlot.MAINHAND, EquipmentSlot.OFFHAND);
+    }
 
+    @Override
+    public String getName() {
+        return "steadfast";
     }
 
     @Override
@@ -39,12 +36,7 @@ public class SteadfastEnchantment extends Enchantment {
     }
 
     @Override
-    public int getMaxLevel() {
+    public int getDefaultMaxLevel() {
         return 2;
-    }
-
-    @Override
-    protected boolean canAccept(Enchantment other) {
-        return super.canAccept(other);
     }
 }
