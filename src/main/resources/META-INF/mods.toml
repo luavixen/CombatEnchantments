@@ -1,0 +1,32 @@
+modLoader = "javafml"
+loaderVersion = "[41,)"
+
+license = "CC0-1.0"
+
+issueTrackerURL = "https://github.com/luavixen/cenchants/issues"
+
+[[mods]]
+modId = "cenchants"
+version = "${version}"
+
+displayName = "Combat Enchantments"
+displayURL = "https://github.com/luavixen/cenchants"
+
+authors = "dsfhdshdjtsb, luavixen"
+description = "Adds new enchantments focused around combat."
+
+logoFile = "cenchants-icon.png"
+
+[[dependencies.cenchants]]
+modId = "forge"
+mandatory = true
+versionRange = "[41,)"
+ordering = "NONE"
+side = "BOTH"
+
+[[dependencies.cenchants]]
+modId = "minecraft"
+mandatory = true
+versionRange = "[1.19,)"
+ordering = "NONE"
+side = "BOTH"

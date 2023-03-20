@@ -1,45 +1,47 @@
 plugins {
-	id 'fabric-loom' version '0.12-SNAPSHOT'
-	id 'maven-publish'
+	id 'dev.architectury.loom' version '1.1.324'
 }
 
 sourceCompatibility = JavaVersion.VERSION_17
 targetCompatibility = JavaVersion.VERSION_17
 
-archivesBaseName = project.archives_base_name
 version = project.mod_version
-group = project.maven_group
 
-repositories {
-	maven { url = "https://jitpack.io" }
+group = project.mod_group
+archivesBaseName = project.mod_name
+
+loom {
+	forge {
+		mixinConfig 'cenchants.mixins.json'
+	}
+	runs {
+		data {
+			data()
+			programArgs '--existing', file('src/main/resources').absolutePath
+		}
+	}
 }
 
 dependencies {
 	minecraft "com.mojang:minecraft:${project.minecraft_version}"
 	mappings "net.fabricmc:yarn:${project.yarn_mappings}:v2"
-	modImplementation "net.fabricmc:fabric-loader:${project.loader_version}"
-
-	//Fabric api
-	modImplementation "net.fabricmc.fabric-api:fabric-api:${project.fabric_version}"
+	forge "net.minecraftforge:forge:${project.forge_version}"
 }
 
 processResources {
 	inputs.property "version", project.version
 
-	filesMatching("fabric.mod.json") {
+	filesMatching("META-INF/mods.toml") {
 		expand "version": project.version
 	}
 }
 
-tasks.withType(JavaCompile).configureEach {
-	// Minecraft 1.18 (1.18-pre2) upwards uses Java 17.
-	it.options.release = 17
+tasks.withType(JavaCompile) {
+	options.encoding = "UTF-8"
+	options.release = 17
 }
 
 java {
-	// Loom will automatically attach sourcesJar to a RemapSourcesJar task and to the "build" task
-	// if it is present.
-	// If you remove this line, sources will not be generated.
 	withSourcesJar()
 }
 
@@ -47,17 +49,16 @@ jar {
 	from("LICENSE") {
 		rename { "${it}_${project.archivesBaseName}"}
 	}
-}
 
-
-// configure the maven publication
-publishing {
-	publications {
-		mavenJava(MavenPublication) {
-			from components.java
-		}
+	manifest {
+		attributes([
+			'Specification-Title'     : project.mod_name,
+			'Specification-Vendor'    : 'luavixen',
+			'Specification-Version'   : '1',
+			'Implementation-Title'    : 'Combat Enchantments',
+			'Implementation-Version'  : project.mod_version,
+			'Implementation-Vendor'   : 'luavixen',
+			'Implementation-Timestamp': new Date().format("yyyy-MM-dd'T'HH:mm:ssZ")
+		])
 	}
-
-	// See https://docs.gradle.org/current/userguide/publishing_maven.html for information on how to set up publishing.
-	repositories { allprojects { repositories { maven { url 'https://jitpack.io' } } } }
 }

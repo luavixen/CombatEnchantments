@@ -1,17 +1,15 @@
 {
-  "required": true,
-  "minVersion": "0.8",
-  "package": "com.dsfhdshdjtsb.CombatEnchants.mixin",
-  "compatibilityLevel": "JAVA_16",
-  "mixins": [
-    "CenchantsBowItemMixin",
-    "CenchantsLivingEntityMixin",
-    "CenchantsPlayerEntityMixin",
-    "CenchantsTridentEntityMixin"
-  ],
-  "client": [
-  ],
-  "injectors": {
-    "defaultRequire": 1
-  }
+    "required": true,
+    "minVersion": "0.8",
+    "package": "dev.foxgirl.cenchants.mixin",
+    "compatibilityLevel": "JAVA_16",
+    "mixins": [
+        "CenchantsBowItemMixin",
+        "CenchantsLivingEntityMixin",
+        "CenchantsPlayerEntityMixin",
+        "CenchantsTridentEntityMixin"
+    ],
+    "injectors": {
+      "defaultRequire": 1
+    }
 }
