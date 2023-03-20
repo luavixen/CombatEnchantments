@@ -14,9 +14,9 @@ import net.minecraft.entity.passive.TameableEntity;
 import net.minecraft.entity.player.PlayerEntity;
 import net.minecraft.item.CrossbowItem;
 import net.minecraft.particle.ParticleTypes;
-import net.minecraft.registry.Registries;
 import net.minecraft.server.world.ServerWorld;
 import net.minecraft.util.Identifier;
+import net.minecraftforge.registries.ForgeRegistries;
 
 import java.util.List;
 
@@ -24,7 +24,7 @@ public class RejuvenateEnchantment extends Enchantment {
     public RejuvenateEnchantment() {
         super(Rarity.RARE, EnchantmentTarget.BOW, new EquipmentSlot[]{EquipmentSlot.MAINHAND});
         if(ModConfigs.REJUVENATE)
-            CombatEnchants.register(Registries.ENCHANTMENT, new Identifier("cenchants", "rejuvenate"), this);
+            CombatEnchants.register(ForgeRegistries.Keys.ENCHANTMENTS, new Identifier("cenchants", "rejuvenate"), this);
     }
 
     @Override

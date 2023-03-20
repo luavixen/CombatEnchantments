@@ -9,14 +9,14 @@ import net.minecraft.entity.EquipmentSlot;
 import net.minecraft.entity.LivingEntity;
 import net.minecraft.entity.effect.StatusEffectInstance;
 import net.minecraft.entity.effect.StatusEffects;
-import net.minecraft.registry.Registries;
 import net.minecraft.util.Identifier;
+import net.minecraftforge.registries.ForgeRegistries;
 
 public class LifelineEnchantment extends Enchantment {
     public LifelineEnchantment() {
         super(Enchantment.Rarity.VERY_RARE, EnchantmentTarget.ARMOR_CHEST, new EquipmentSlot[] {EquipmentSlot.CHEST});
         if(ModConfigs.LIFELINE)
-            CombatEnchants.register(Registries.ENCHANTMENT, new Identifier("cenchants", "lifeline"), this);
+            CombatEnchants.register(ForgeRegistries.Keys.ENCHANTMENTS, new Identifier("cenchants", "lifeline"), this);
     }
 
     @Override

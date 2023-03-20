@@ -13,16 +13,16 @@ import net.minecraft.entity.effect.StatusEffectInstance;
 import net.minecraft.entity.passive.WolfEntity;
 import net.minecraft.entity.player.PlayerEntity;
 import net.minecraft.item.BowItem;
-import net.minecraft.registry.Registries;
 import net.minecraft.server.world.ServerWorld;
 import net.minecraft.util.Identifier;
 import net.minecraft.world.World;
+import net.minecraftforge.registries.ForgeRegistries;
 
 public class BiteEnchantment extends Enchantment {
     public BiteEnchantment() {
         super(Rarity.UNCOMMON, EnchantmentTarget.CROSSBOW, new EquipmentSlot[] {EquipmentSlot.MAINHAND});
         if(ModConfigs.BITE)
-            CombatEnchants.register(Registries.ENCHANTMENT, new Identifier("cenchants", "bite"), this);
+            CombatEnchants.register(ForgeRegistries.Keys.ENCHANTMENTS, new Identifier("cenchants", "bite"), this);
     }
 
     @Override

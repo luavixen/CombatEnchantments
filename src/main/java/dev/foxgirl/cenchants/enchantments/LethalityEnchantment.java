@@ -11,14 +11,14 @@ import net.minecraft.entity.LivingEntity;
 import net.minecraft.entity.attribute.EntityAttributes;
 import net.minecraft.entity.damage.DamageSource;
 import net.minecraft.entity.player.PlayerEntity;
-import net.minecraft.registry.Registries;
 import net.minecraft.util.Identifier;
+import net.minecraftforge.registries.ForgeRegistries;
 
 public class LethalityEnchantment extends Enchantment {
     public LethalityEnchantment() {
         super(Rarity.COMMON, EnchantmentTarget.WEAPON, new EquipmentSlot[]{EquipmentSlot.MAINHAND});
         if(ModConfigs.LETHALITY)
-            CombatEnchants.register(Registries.ENCHANTMENT, new Identifier("cenchants", "lethality"), this);
+            CombatEnchants.register(ForgeRegistries.Keys.ENCHANTMENTS, new Identifier("cenchants", "lethality"), this);
     }
 
     @Override

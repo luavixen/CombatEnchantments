@@ -7,14 +7,14 @@ import net.minecraft.enchantment.EnchantmentTarget;
 import net.minecraft.entity.EquipmentSlot;
 import net.minecraft.item.ItemStack;
 import net.minecraft.item.ShieldItem;
-import net.minecraft.registry.Registries;
 import net.minecraft.util.Identifier;
+import net.minecraftforge.registries.ForgeRegistries;
 
 public class LightweightEnchantment extends Enchantment {
     public LightweightEnchantment() {
         super(Rarity.UNCOMMON, EnchantmentTarget.BREAKABLE, new EquipmentSlot[] {EquipmentSlot.MAINHAND, EquipmentSlot.OFFHAND});
         if(ModConfigs.LIGHTWEIGHT)
-            CombatEnchants.register(Registries.ENCHANTMENT, new Identifier("cenchants", "lightweight"), this);
+            CombatEnchants.register(ForgeRegistries.Keys.ENCHANTMENTS, new Identifier("cenchants", "lightweight"), this);
 
     }
 

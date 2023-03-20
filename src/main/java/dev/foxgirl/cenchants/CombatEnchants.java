@@ -6,12 +6,12 @@ import dev.foxgirl.cenchants.enchantments.*;
 import net.minecraft.enchantment.Enchantment;
 import net.minecraft.entity.EquipmentSlot;
 import net.minecraft.entity.effect.StatusEffect;
-import net.minecraft.registry.Registries;
 import net.minecraft.registry.Registry;
 import net.minecraft.registry.RegistryKey;
 import net.minecraft.util.Identifier;
 import net.minecraftforge.fml.common.Mod;
 import net.minecraftforge.fml.javafmlmod.FMLJavaModLoadingContext;
+import net.minecraftforge.registries.ForgeRegistries;
 import net.minecraftforge.registries.RegisterEvent;
 
 import java.util.ArrayList;
@@ -122,31 +122,31 @@ public final class CombatEnchants {
         ZAP = new ZapEnchantment();
         SHIELDBREAK = new ShieldBreakEnchantment();
 
-        register(Registries.STATUS_EFFECT, new Identifier("cenchants", "rampage"), RAMPAGE_EFFECT);
-        register(Registries.STATUS_EFFECT, new Identifier("cenchants", "lifesteal_cooldown"), LIFESTEAL_COOLDOWN_EFFECT);
-        register(Registries.STATUS_EFFECT, new Identifier("cenchants", "mark"), MARK_EFFECT);
-        register(Registries.STATUS_EFFECT, new Identifier("cenchants", "sleepy"), SLEEPY_EFFECT);
-        register(Registries.STATUS_EFFECT, new Identifier("cenchants", "shielding_cooldown"), SHIELDING_COOLDOWN_EFFECT);
-        register(Registries.STATUS_EFFECT, new Identifier("cenchants", "fire_walk"), FIRE_WALK_EFFECT);
-        register(Registries.STATUS_EFFECT, new Identifier("cenchants", "antiheal"), ANTIHEAL_EFFECT);
-        register(Registries.STATUS_EFFECT, new Identifier("cenchants", "delayed_death"), DELAYED_DEATH_EFFECT);
-        register(Registries.STATUS_EFFECT, new Identifier("cenchants", "fervor"), FERVOR_EFFECT);
-        register(Registries.STATUS_EFFECT, new Identifier("cenchants", "barrage"), BARRAGE_EFFECT);
-        register(Registries.STATUS_EFFECT, new Identifier("cenchants", "barrage_stack"), BARRAGE_STACK_EFFECT);
-        register(Registries.STATUS_EFFECT, new Identifier("cenchants", "lifeline_cooldown"), LIFELINE_COOLDOWN_EFFECT);
-        register(Registries.STATUS_EFFECT, new Identifier("cenchants", "frost_particle"), FROST_PARTICLE_EFFECT);
-        register(Registries.STATUS_EFFECT, new Identifier("cenchants", "sleepy_particle"), SLEEPY_PARTICLE_EFFECT);
-        register(Registries.STATUS_EFFECT, new Identifier("cenchants", "grab"), GRAB_EFFECT);
-        register(Registries.STATUS_EFFECT, new Identifier("cenchants", "aftershock"), AFTERSHOCK_EFFECT);
-        register(Registries.STATUS_EFFECT, new Identifier("cenchants", "lightning_immune"), LIGHTNING_IMMUNE);
-        // register(Registries.PARTICLE_TYPE, new Identifier("cenchants", "shield"), SHIELD_PARTICLE);
-        // register(Registries.PARTICLE_TYPE, new Identifier("cenchants", "sleepy"), SLEEPY_PARTICLE);
+        register(ForgeRegistries.Keys.MOB_EFFECTS, new Identifier("cenchants", "rampage"), RAMPAGE_EFFECT);
+        register(ForgeRegistries.Keys.MOB_EFFECTS, new Identifier("cenchants", "lifesteal_cooldown"), LIFESTEAL_COOLDOWN_EFFECT);
+        register(ForgeRegistries.Keys.MOB_EFFECTS, new Identifier("cenchants", "mark"), MARK_EFFECT);
+        register(ForgeRegistries.Keys.MOB_EFFECTS, new Identifier("cenchants", "sleepy"), SLEEPY_EFFECT);
+        register(ForgeRegistries.Keys.MOB_EFFECTS, new Identifier("cenchants", "shielding_cooldown"), SHIELDING_COOLDOWN_EFFECT);
+        register(ForgeRegistries.Keys.MOB_EFFECTS, new Identifier("cenchants", "fire_walk"), FIRE_WALK_EFFECT);
+        register(ForgeRegistries.Keys.MOB_EFFECTS, new Identifier("cenchants", "antiheal"), ANTIHEAL_EFFECT);
+        register(ForgeRegistries.Keys.MOB_EFFECTS, new Identifier("cenchants", "delayed_death"), DELAYED_DEATH_EFFECT);
+        register(ForgeRegistries.Keys.MOB_EFFECTS, new Identifier("cenchants", "fervor"), FERVOR_EFFECT);
+        register(ForgeRegistries.Keys.MOB_EFFECTS, new Identifier("cenchants", "barrage"), BARRAGE_EFFECT);
+        register(ForgeRegistries.Keys.MOB_EFFECTS, new Identifier("cenchants", "barrage_stack"), BARRAGE_STACK_EFFECT);
+        register(ForgeRegistries.Keys.MOB_EFFECTS, new Identifier("cenchants", "lifeline_cooldown"), LIFELINE_COOLDOWN_EFFECT);
+        register(ForgeRegistries.Keys.MOB_EFFECTS, new Identifier("cenchants", "frost_particle"), FROST_PARTICLE_EFFECT);
+        register(ForgeRegistries.Keys.MOB_EFFECTS, new Identifier("cenchants", "sleepy_particle"), SLEEPY_PARTICLE_EFFECT);
+        register(ForgeRegistries.Keys.MOB_EFFECTS, new Identifier("cenchants", "grab"), GRAB_EFFECT);
+        register(ForgeRegistries.Keys.MOB_EFFECTS, new Identifier("cenchants", "aftershock"), AFTERSHOCK_EFFECT);
+        register(ForgeRegistries.Keys.MOB_EFFECTS, new Identifier("cenchants", "lightning_immune"), LIGHTNING_IMMUNE);
+        // register(Registries.PARTICLE_TYPE.getKey(), new Identifier("cenchants", "shield"), SHIELD_PARTICLE);
+        // register(Registries.PARTICLE_TYPE.getKey(), new Identifier("cenchants", "sleepy"), SLEEPY_PARTICLE);
 
         FMLJavaModLoadingContext.get().getModEventBus().addListener(this::onRegister);
     }
 
-    public static <V, T extends V> void register(Registry<V> registry, Identifier id, T entry) {
-        registryEntries.add(new Object[] { registry.getKey(), id, entry });
+    public static <T> void register(RegistryKey<? extends Registry<T>> key, Identifier id, T entry) {
+        registryEntries.add(new Object[] { key, id, entry });
     }
 
     private static final List<Object[]> registryEntries = new ArrayList<>(64);

@@ -7,14 +7,14 @@ import net.minecraft.enchantment.EnchantmentTarget;
 import net.minecraft.entity.Entity;
 import net.minecraft.entity.EquipmentSlot;
 import net.minecraft.entity.LivingEntity;
-import net.minecraft.registry.Registries;
 import net.minecraft.util.Identifier;
+import net.minecraftforge.registries.ForgeRegistries;
 
 public class DeflectEnchantment extends Enchantment {
     public DeflectEnchantment() {
         super(Enchantment.Rarity.VERY_RARE, EnchantmentTarget.ARMOR_CHEST, new EquipmentSlot[] {EquipmentSlot.CHEST});
         if(ModConfigs.DEFLECT)
-            CombatEnchants.register(Registries.ENCHANTMENT, new Identifier("cenchants", "deflect"), this);
+            CombatEnchants.register(ForgeRegistries.Keys.ENCHANTMENTS, new Identifier("cenchants", "deflect"), this);
     }
 
     @Override

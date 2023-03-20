@@ -6,14 +6,14 @@ import net.minecraft.enchantment.Enchantment;
 import net.minecraft.enchantment.EnchantmentTarget;
 import net.minecraft.entity.Entity;
 import net.minecraft.entity.LivingEntity;
-import net.minecraft.registry.Registries;
 import net.minecraft.util.Identifier;
+import net.minecraftforge.registries.ForgeRegistries;
 
 public class ShieldingEnchantment extends Enchantment {
     public ShieldingEnchantment() {
         super(Rarity.UNCOMMON, EnchantmentTarget.WEARABLE, CombatEnchants.ALL_ARMOR);
         if(ModConfigs.SHIELDING)
-            CombatEnchants.register(Registries.ENCHANTMENT, new Identifier("cenchants", "shielding"), this);
+            CombatEnchants.register(ForgeRegistries.Keys.ENCHANTMENTS, new Identifier("cenchants", "shielding"), this);
     }
 
     @Override

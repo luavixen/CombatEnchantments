@@ -9,15 +9,15 @@ import net.minecraft.entity.EquipmentSlot;
 import net.minecraft.entity.LivingEntity;
 import net.minecraft.entity.damage.DamageSource;
 import net.minecraft.item.BowItem;
-import net.minecraft.registry.Registries;
 import net.minecraft.util.Identifier;
 import net.minecraft.util.math.MathHelper;
+import net.minecraftforge.registries.ForgeRegistries;
 
 public class HookEnchantment extends Enchantment {
     public HookEnchantment() {
         super(Rarity.RARE, EnchantmentTarget.CROSSBOW, new EquipmentSlot[] {EquipmentSlot.MAINHAND});
         if(ModConfigs.HOOK)
-            CombatEnchants.register(Registries.ENCHANTMENT, new Identifier("cenchants", "hook"), this);
+            CombatEnchants.register(ForgeRegistries.Keys.ENCHANTMENTS, new Identifier("cenchants", "hook"), this);
     }
 
     @Override

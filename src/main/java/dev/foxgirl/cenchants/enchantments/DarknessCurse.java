@@ -7,14 +7,14 @@ import net.minecraft.enchantment.EnchantmentTarget;
 import net.minecraft.entity.Entity;
 import net.minecraft.entity.EquipmentSlot;
 import net.minecraft.entity.LivingEntity;
-import net.minecraft.registry.Registries;
 import net.minecraft.util.Identifier;
+import net.minecraftforge.registries.ForgeRegistries;
 
 public class DarknessCurse extends Enchantment {
     public DarknessCurse() {
         super(Rarity.VERY_RARE, EnchantmentTarget.ARMOR_HEAD, new EquipmentSlot[] {EquipmentSlot.MAINHAND});
         if(ModConfigs.DARKNESS)
-            CombatEnchants.register(Registries.ENCHANTMENT, new Identifier("cenchants", "darkness"), this);
+            CombatEnchants.register(ForgeRegistries.Keys.ENCHANTMENTS, new Identifier("cenchants", "darkness"), this);
     }
 
     @Override

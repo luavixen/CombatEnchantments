@@ -8,17 +8,17 @@ import net.minecraft.enchantment.EnchantmentTarget;
 import net.minecraft.entity.*;
 import net.minecraft.entity.effect.StatusEffectInstance;
 import net.minecraft.particle.ParticleTypes;
-import net.minecraft.registry.Registries;
 import net.minecraft.server.world.ServerWorld;
 import net.minecraft.util.Identifier;
 import net.minecraft.world.World;
+import net.minecraftforge.registries.ForgeRegistries;
 
 
 public class ComboEnchantment extends Enchantment {
     public ComboEnchantment() {
         super(Rarity.UNCOMMON, EnchantmentTarget.WEAPON, new EquipmentSlot[]{EquipmentSlot.MAINHAND});
         if(ModConfigs.COMBO)
-            CombatEnchants.register(Registries.ENCHANTMENT, new Identifier("cenchants", "combo"), this);
+            CombatEnchants.register(ForgeRegistries.Keys.ENCHANTMENTS, new Identifier("cenchants", "combo"), this);
     }
 
     @Override

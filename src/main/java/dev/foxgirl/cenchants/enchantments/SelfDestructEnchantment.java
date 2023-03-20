@@ -10,17 +10,17 @@ import net.minecraft.entity.EquipmentSlot;
 import net.minecraft.entity.LivingEntity;
 import net.minecraft.entity.damage.DamageSource;
 import net.minecraft.entity.player.PlayerEntity;
-import net.minecraft.registry.Registries;
 import net.minecraft.util.Identifier;
 import net.minecraft.world.GameRules;
 import net.minecraft.world.World;
 import net.minecraft.world.explosion.Explosion;
+import net.minecraftforge.registries.ForgeRegistries;
 
 public class SelfDestructEnchantment extends Enchantment {
     public SelfDestructEnchantment() {
         super(Rarity.UNCOMMON, EnchantmentTarget.WEAPON, new EquipmentSlot[]{EquipmentSlot.MAINHAND});
         if(ModConfigs.SELFDESTRUCT)
-            CombatEnchants.register(Registries.ENCHANTMENT, new Identifier("cenchants", "self_destruct"), this);
+            CombatEnchants.register(ForgeRegistries.Keys.ENCHANTMENTS, new Identifier("cenchants", "self_destruct"), this);
     }
 
     @Override

@@ -9,9 +9,9 @@ import net.minecraft.entity.Entity;
 import net.minecraft.entity.EquipmentSlot;
 import net.minecraft.entity.LivingEntity;
 import net.minecraft.particle.ParticleTypes;
-import net.minecraft.registry.Registries;
 import net.minecraft.server.world.ServerWorld;
 import net.minecraft.util.Identifier;
+import net.minecraftforge.registries.ForgeRegistries;
 
 import java.util.List;
 
@@ -19,7 +19,7 @@ public class DuelingEnchantment  extends Enchantment {
     public DuelingEnchantment() {
         super(Rarity.RARE, EnchantmentTarget.WEAPON, new EquipmentSlot[]{EquipmentSlot.MAINHAND});
         if(ModConfigs.DUELING)
-            CombatEnchants.register(Registries.ENCHANTMENT, new Identifier("cenchants", "dueling"), this);
+            CombatEnchants.register(ForgeRegistries.Keys.ENCHANTMENTS, new Identifier("cenchants", "dueling"), this);
     }
 
     @Override

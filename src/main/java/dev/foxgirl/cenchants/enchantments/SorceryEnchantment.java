@@ -6,14 +6,14 @@ import net.minecraft.enchantment.Enchantment;
 import net.minecraft.enchantment.EnchantmentTarget;
 import net.minecraft.entity.Entity;
 import net.minecraft.entity.LivingEntity;
-import net.minecraft.registry.Registries;
 import net.minecraft.util.Identifier;
+import net.minecraftforge.registries.ForgeRegistries;
 
 public class SorceryEnchantment extends Enchantment {
     public SorceryEnchantment() {
         super(Rarity.UNCOMMON, EnchantmentTarget.WEARABLE, CombatEnchants.ALL_ARMOR);
         if(ModConfigs.SORCERY)
-            CombatEnchants.register(Registries.ENCHANTMENT, new Identifier("cenchants", "sorcery"), this);
+            CombatEnchants.register(ForgeRegistries.Keys.ENCHANTMENTS, new Identifier("cenchants", "sorcery"), this);
     }
 
     @Override

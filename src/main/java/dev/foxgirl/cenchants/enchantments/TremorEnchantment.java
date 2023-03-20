@@ -7,14 +7,14 @@ import net.minecraft.enchantment.EnchantmentTarget;
 import net.minecraft.entity.Entity;
 import net.minecraft.entity.EquipmentSlot;
 import net.minecraft.entity.LivingEntity;
-import net.minecraft.registry.Registries;
 import net.minecraft.util.Identifier;
+import net.minecraftforge.registries.ForgeRegistries;
 
 public class TremorEnchantment extends Enchantment {
     public TremorEnchantment() {
         super(Rarity.RARE, EnchantmentTarget.ARMOR_FEET, new EquipmentSlot[] {EquipmentSlot.FEET});
         if(ModConfigs.TREMOR)
-            CombatEnchants.register(Registries.ENCHANTMENT, new Identifier("cenchants", "tremor"), this);
+            CombatEnchants.register(ForgeRegistries.Keys.ENCHANTMENTS, new Identifier("cenchants", "tremor"), this);
     }
 
     @Override

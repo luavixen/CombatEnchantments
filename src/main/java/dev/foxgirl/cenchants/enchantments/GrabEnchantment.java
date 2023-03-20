@@ -12,8 +12,8 @@ import net.minecraft.entity.damage.DamageSource;
 import net.minecraft.entity.effect.StatusEffectInstance;
 import net.minecraft.entity.effect.StatusEffects;
 import net.minecraft.item.CrossbowItem;
-import net.minecraft.registry.Registries;
 import net.minecraft.util.Identifier;
+import net.minecraftforge.registries.ForgeRegistries;
 
 import java.util.List;
 
@@ -21,7 +21,7 @@ public class GrabEnchantment extends Enchantment {
     public GrabEnchantment() {
         super(Rarity.RARE, EnchantmentTarget.BOW, new EquipmentSlot[] {EquipmentSlot.MAINHAND});
         if(ModConfigs.GRAB)
-            CombatEnchants.register(Registries.ENCHANTMENT, new Identifier("cenchants", "grab"), this);
+            CombatEnchants.register(ForgeRegistries.Keys.ENCHANTMENTS, new Identifier("cenchants", "grab"), this);
     }
 
     @Override

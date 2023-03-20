@@ -10,7 +10,7 @@ public class ShieldBreakEnchantment extends Enchantment {
     public ShieldBreakEnchantment() {
         super(Rarity.RARE, EnchantmentTarget.CROSSBOW, new EquipmentSlot[] {EquipmentSlot.MAINHAND});
 //        if(ModConfigs.SHIELDBREAK)
-//            CombatEnchants.register(Registries.ENCHANTMENT, new Identifier("cenchants", "shield_break"), this);
+//            CombatEnchants.register(ForgeRegistries.Keys.ENCHANTMENTS, new Identifier("cenchants", "shield_break"), this);
     }
 
     @Override
